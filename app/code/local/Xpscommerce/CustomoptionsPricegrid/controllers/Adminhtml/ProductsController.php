@@ -3,12 +3,11 @@
 class Xpscommerce_CustomoptionsPricegrid_Adminhtml_ProductsController 
     extends Mage_Adminhtml_Controller_action
 {
-
     public function indexAction()
     {
         $block = Mage::app()->getLayout()
-                  ->createBlock('productsmanager/adminhtml_products') 
-                  ->setTemplate('productsmanager/products.phtml');
+                  ->createBlock('customoptionspricegrid/adminhtml_products') 
+                  ->setTemplate('customoptionspricegrid/products.phtml');
 
         echo $block->toHtml();
     }
@@ -26,3 +25,4 @@ class Xpscommerce_CustomoptionsPricegrid_Adminhtml_ProductsController
         }
     }
 } 
+

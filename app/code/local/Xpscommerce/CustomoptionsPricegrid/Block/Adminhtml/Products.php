@@ -1,6 +1,6 @@
 <?php
 
-class Masterdef_ProductsManager_Block_Adminhtml_Products 
+class Xpscommerce_CustomoptionsPricegrid_Block_Adminhtml_Products 
     extends Mage_Core_Block_Template
 {
     /**
