@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Xpscommerce_CustomoptionsPricegrid>
+            <version>1.0</version>
+        </Xpscommerce_CustomoptionsPricegrid>
+    </modules>
+    <admin>
+        <routers>
+            <customoptionspricegrid>
+                <use>admin</use>
+                <args>
+                    <module>Xpscommerce_CustomoptionsPricegrid</module>
+                    <frontName>customoptionspricegrid</frontName>
+                </args>
+            </customoptionspricegrid>
+        </routers>
+    </admin>
+    <adminhtml>
+        <menu>
+            <catalog module="customoptionspricegrid">
+                <children>
+                    <customoptionspricegrid translate="title" module="catalog">
+                        <title>Custom Options Price Grid</title>
+                        <sort_order>1</sort_order>
+                        <action>customoptionspricegrid/adminhtml_index</action>
+                    </customoptionspricegrid>
+                </children>
+            </catalog>
+        </menu>
+        <layout>
+            <updates>
+                <customoptionspricegrid>
+                    <file>customoptionspricegrid.xml</file>
+                </customoptionspricegrid>
+            </updates>
+        </layout>
+    </adminhtml>
+    <global>
+        <blocks>
+            <customoptionspricegrid>
+                <class>Xpscommerce_CustomoptionsPricegrid_Block</class>
+            </customoptionspricegrid>
+        </blocks>
+        <models>
+            <customoptionspricegrid>
+                <class>Xpscommerce_CustomoptionsPricegrid_Model</class>
+            </customoptionspricegrid>
+        </models>
+        <helpers>
+            <customoptionspricegrid>
+                <class>Xpscommerce_CustomoptionsPricegrid_Helper</class>
+            </customoptionspricegrid>
+        </helpers>
+    </global>
+</config>
+
