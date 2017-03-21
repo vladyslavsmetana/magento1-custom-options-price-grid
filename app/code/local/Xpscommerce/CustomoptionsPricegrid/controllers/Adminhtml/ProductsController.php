@@ -15,13 +15,21 @@ class Xpscommerce_CustomoptionsPricegrid_Adminhtml_ProductsController
     public function saveAction()
     {
         $products = $this->getRequest()->getParam('products');
-        foreach ($products as $productId => $productData) {
-            $product = Mage::getModel('catalog/product')->load($productId);
-            $stockData = $product->getStockData();
-            $stockData['qty'] = $productData['stock'];
-            $stockData['is_in_stock'] = $stockData['qty'] ? 1 : 0;
-            $product->setStockData($stockData);
+
+        foreach ($products as $productId => $priceData) {
+          $product = Mage::getModel('catalog/product')->load($priceData['product_id']);
+          if ($priceData['option_type_id']) {
+              $price = $priceData['price'];
+              $resource = Mage::getSingleton('core/resource');
+							$writeConnection = $resource->getConnection('core_write');
+							$table = $resource->getTableName('catalog/product_option_type_price');
+							$query = "UPDATE {$table} SET price = '{$price}' WHERE option_type_id = "
+													 . (int)$priceData['option_type_id'];
+							$writeConnection->query($query);
+          } else {
+            $product->setPrice($priceData['price']);
             $product->save();
+          }
         }
     }
 } 
