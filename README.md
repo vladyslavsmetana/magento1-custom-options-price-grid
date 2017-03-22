@@ -1,3 +1,4 @@
+Magento
 Custom Options Price Manager
 ============================
 
