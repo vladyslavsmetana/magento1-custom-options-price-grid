@@ -1,9 +1,7 @@
-Magento
-Custom Options Price Manager
-============================
+# magento1-custom-options-price-grid
+Custom Options Price Grid. Manage all custom options for products, from single grid and single click update price.
+http://www.xpscommerce.com/images/ext/custom-options-grid-menu.png
 
-Module for Magento for quick custom options management, search and update prices. Magento custom extension.
+http://www.xpscommerce.com/images/ext/custom-options-search-products.png
 
-With single click you can update several product prices with several custom options.
-
-https://www.youtube.com/watch?v=n9FIKVVJkS0
+http://www.xpscommerce.com/images/ext/custom-options-update-with-single-click.png
