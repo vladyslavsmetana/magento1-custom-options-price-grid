@@ -4,15 +4,12 @@
 /*.php
 /app/etc/modules/*.xml
 /app/etc
-/app/design/adminhtml/default/default/template
-/app/design/adminhtml/default/default/layout
 /.htaccess*
 /*.txt
 /*.html
 /js/*
 /app/code/community
 /app/code/core
-/app/design/adminhtml/default
 /var/cache
 /var/locks
 /var/package
@@ -37,3 +34,8 @@
 /skin/frontend/base/default/images
 /skin/frontend/default/blank/images
 /media/*
+/app/design/adminhtml/default/default/template/*
+/app/design/adminhtml/default/default/etc
+/app/design/adminhtml/default/default/layout
+/app/design/adminhtml/default/default/locale
+/*.sql

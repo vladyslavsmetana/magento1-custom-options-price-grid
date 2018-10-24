@@ -1,0 +1,43 @@
+<?php $data = $this->getProducts() ?>
+<?php $products = $data['products'] ?>
+<?php if (!count($products)): ?>
+  <div>not found</div>
+<?php else: ?>
+<div class="grid">
+<form method="get" action="<?php echo Mage::helper('adminhtml')->getUrl('customoptionspricegrid/adminhtml_products/save') ?>" id="products_update_form">
+  <table cellspacing="0" id="productGrid_table" class="data">
+      <thead>
+      <tr class="headings a-left">
+          <th class="a-left"><span class="nobr"><a class="not-sort" title="asc" name="sku" href="#"><span class="sort-sku"><?php echo $this->__('SKU') ?></span></a></span></th>
+          <th class="a-left"><span class="nobr"><a class="not-sort" title="asc" name="name" href="#"><span class="sort-name"><?php echo $this->__('Product') ?></span></a></span></th>
+          <th class="a-left"><span class="nobr"><a class="not-sort" title="asc" name="price" href="#"><span class="sort-price"><?php echo $this->__('Custom Option') ?></span></a></span></th>
+          <th class="a-left"><span class="nobr"><a class="not-sort" title="asc" name="qty" href="#"><span class="sort-qty"><?php echo $this->__('Price') ?></span></a></span></th>
+          <th class="a-left no-link last"><span class="nobr"><?php echo $this->__('Product') ?></span></th>
+      </tr>
+      </thead>
+
+      <?php foreach ($products as $id => $p): ?>
+      <?php $rowClass = @$rowClass == 'even' ? '' : 'even'; ?>
+      <tr class="<?php echo $rowClass ?> dynamic-grid">
+          <td class="sku"><?php echo $p['sku'] ?></td>
+          <td class="name"><?php echo $p['name'] ?><input type="hidden" name="products[<?php echo $id ?>][id]" value="<?php echo $id ?>"/></td>
+          <td class="price"><?php echo $p['custom_option'] ?></td>
+          <td class="stock" style="width:40px;">
+            <input type="text" value="<?php echo $p['price'] ?>" class="input-text no-changes" name="products[<?php echo $id ?>][price]"/>
+            <input type="hidden" name="products[<?php echo $id ?>][product_id]" value="<?php echo $p['product_id'] ?>"/>
+            <input type="hidden" name="products[<?php echo $id ?>][option_type_id]" value="<?php echo $p['option_type_id'] ?>"/>
+          </td>
+          <td><a target="_blank" href="<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/catalog_product/edit', array('id' => $id)) ?>">edit</a></td>
+      </tr>
+      <?php endforeach ?>
+  </table>
+</form>
+</div>
+<?php endif ?>
+
+<script language="javascript">
+  jQuery(document).ready(function(){
+    // sort table results
+    jQuery('#productGrid_table').tablesorter();
+  });
+</script>
