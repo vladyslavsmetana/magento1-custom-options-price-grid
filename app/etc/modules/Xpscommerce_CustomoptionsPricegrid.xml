@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Xpscommerce_CustomoptionsPricegrid>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Xpscommerce_CustomoptionsPricegrid>
+    </modules>
+</config> 

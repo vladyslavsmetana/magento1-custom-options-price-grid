@@ -2,8 +2,7 @@
 *.sample
 /lib
 /*.php
-/app/etc/modules/*.xml
-/app/etc
+/app/etc/modules/Mage_*
 /.htaccess*
 /*.txt
 /*.html
