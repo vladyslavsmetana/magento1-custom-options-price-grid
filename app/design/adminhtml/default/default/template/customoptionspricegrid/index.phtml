@@ -1,26 +1,26 @@
 <div id="b_products_manager" class="">
     <div class="buttons_box">
-      <table>
-        <tr>
-          <td>
-            <span class="search_label">
-            Search by Product Name or SKU:
-            </span>
-          </td>
-          <td>
-            <input type="text" class="input-text no-changes" value="" id="productGrid_product_filter_search" name="search">
-            <button style="" class="scalable task" type="button" id="id_search_button"><span>Search</span></button>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>
-          </td>
-        </tr>
-      </table>
-      <div class="update_qty" style="display: none;">
-            <button style="" class="scalable task" type="button" id="id_update_qty_button"><span>Update Prices</span></button>
-      </div>
+        <table width="100%">
+            <tr>
+                <th>
+                    <span class="search_label">Search by Product Name or SKU:</span>
+                    <input type="text" class="input-text no-changes" value="" id="productGrid_product_filter_search" name="search">
+                    <button style="" class="scalable task" type="button" id="id_search_button"><span>Search</span>
+                    </button>
+                </th>
+                <th align="right">
+                    <div class="update_qty" style="display: none;">
+                        <button style="" class="scalable task" type="button" id="id_update_qty_button"><span>Update Prices</span>
+                        </button>
+                    </div>
+                </th>
+            </tr>
+            <!-- spacer -->
+            <tr>
+                <th>&nbsp;</th>
+            </tr>
+            <!-- spacer  end-->
+        </table>
     </div>
     <div id="b_product_results"></div>
 </div>
@@ -32,31 +32,31 @@
     /**
      * Search by product name
      **/
-    jQuery('button#id_search_button').click(function(){
+    jQuery('button#id_search_button').click(function () {
         jQuery('#loading-mask').css('display', 'block');
         jQuery('#b_product_results').load(
-            productsScreenUrl + '?search=' + jQuery('#productGrid_product_filter_search').val(), 
-            function() {
+            productsScreenUrl + '?search=' + jQuery('#productGrid_product_filter_search').val(),
+            function () {
                 jQuery('#loading-mask').css('display', 'none')
                 jQuery('.update_qty').show();
-            }); 
+            });
     });
 
     /**
      * Update Qty
      **/
-    jQuery('button#id_update_qty_button').click(function(){
+    jQuery('button#id_update_qty_button').click(function () {
         jQuery('#loading-mask').css('display', 'block');
         jQuery('#products_update_form').ajaxSubmit({
-          success: function(){
-            jQuery('#loading-mask').css('display', 'none');
-          }
+            success: function () {
+                jQuery('#loading-mask').css('display', 'none');
+            }
         });
     });
 
     // Load default grid results
-    jQuery(document).ready(function(){
-      jQuery('button#id_search_button').trigger('click');
+    jQuery(document).ready(function () {
+        jQuery('button#id_search_button').trigger('click');
     });
 </script>
 
