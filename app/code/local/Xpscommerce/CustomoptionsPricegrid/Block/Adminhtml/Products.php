@@ -65,7 +65,7 @@ class Xpscommerce_CustomoptionsPricegrid_Block_Adminhtml_Products
                   'name'  => $product->getName(),
                   'price' => $price,
                   'stock' => round($qty),
-                  'sku'   => $product->getSku(),
+                  'sku'   => $v->getSku(),
                   'custom_option' => "{$vtitle} ({$optionType})",
                   'option_type_id' => $k,
                   'product_id' => $_id,
