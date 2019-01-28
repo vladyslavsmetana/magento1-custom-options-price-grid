@@ -17,8 +17,7 @@ class Xpscommerce_CustomoptionsPricegrid_Block_Adminhtml_Products
                 ->addAttributeToSelect('*')
                 ->addAttributeToFilter(
                     array(
-                        array('attribute' => 'name', 'like' => "%{$search}%"),
-                        array('attribute' => 'sku', 'like' => "%{$search}%"),
+                        array('attribute' => 'name', 'like' => "%{$search}%", 'attribute' => 'sku', 'like' => "%{$search}%"),
                         )
                     )
                 ->load();
