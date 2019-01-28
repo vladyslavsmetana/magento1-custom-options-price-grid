@@ -21,6 +21,7 @@ class Xpscommerce_CustomoptionsPricegrid_Block_Adminhtml_Products
                         )
                     )
                 ->load();
+            //var_dump(11032425, $products->getSelect()->__toString());exit;
         } else {
             // no search parameters found
             $products = Mage::getModel('catalog/product')->getCollection()
