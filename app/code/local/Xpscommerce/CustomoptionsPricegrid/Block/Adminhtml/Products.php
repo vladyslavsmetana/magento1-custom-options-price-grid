@@ -11,24 +11,10 @@ class Xpscommerce_CustomoptionsPricegrid_Block_Adminhtml_Products
         $search = $this->getRequest()->getParam('search');
         $searchSKU = $this->getRequest()->getParam('search_sku');
 
-        if ($search) {
-            // search by product name or SKU
-            $products = Mage::getModel('catalog/product')->getCollection()
-                ->addAttributeToSelect('*')
-                ->addAttributeToFilter(
-                    array(
-                        array('attribute' => 'name', 'like' => "%{$search}%", 'attribute' => 'sku', 'like' => "%{$search}%"),
-                        )
-                    )
-                ->load();
-            //var_dump(11032425, $products->getSelect()->__toString());exit;
-        } else {
-            // no search parameters found
             $products = Mage::getModel('catalog/product')->getCollection()
                 ->addAttributeToSelect('*')
                 ->setPageSize(20)
                 ->load();
-        }
 
         // process search results
         $ret = array();
@@ -45,13 +31,15 @@ class Xpscommerce_CustomoptionsPricegrid_Block_Adminhtml_Products
 
             $qty = $stock->getQty() * $stock->getIsInStock();
             $price = $product->getPrice();
-            $ret[$_id]['name'] = $product->getName();
-            $ret[$_id]['price'] = $price;
-            $ret[$_id]['stock'] = round($qty);
-            $ret[$_id]['sku'] = $product->getSku();
-            $ret[$_id]['custom_option'] = 'default';
-            $ret[$_id]['product_id'] = $_id;
-            $ret[$_id]['option_type_id'] = 0;
+            if ( strpos(mb_strtolower($product->getSku()), mb_strtolower($search)) || strpos(mb_strtolower($product->getName()), mb_strtolower($search)) || (!$search)) {
+                $ret[$_id]['name'] = $product->getName();
+                $ret[$_id]['price'] = $price;
+                $ret[$_id]['stock'] = round($qty);
+                $ret[$_id]['sku'] = $product->getSku();
+                $ret[$_id]['custom_option'] = 'default';
+                $ret[$_id]['product_id'] = $_id;
+                $ret[$_id]['option_type_id'] = 0;
+            }
 
             foreach ($product->getOptions() as $o) {
               $optionType = $o->getTitle();
@@ -60,16 +48,18 @@ class Xpscommerce_CustomoptionsPricegrid_Block_Adminhtml_Products
               foreach ($values as $k  => $v) {
                 $price = (float)$v->getPrice();
                 $vtitle = $v->getTitle();
+                if ( strpos(mb_strtolower($v->getSku()), mb_strtolower($search)) || strpos(mb_strtolower($product->getName()), mb_strtolower($search)) || (!$search)) {
 
-                $ret["{$_id}-{$k}"] = array(
-                  'name'  => $product->getName(),
-                  'price' => $price,
-                  'stock' => round($qty),
-                  'sku'   => $v->getSku(),
-                  'custom_option' => "{$vtitle} ({$optionType})",
-                  'option_type_id' => $k,
-                  'product_id' => $_id,
-                  );
+                    $ret["{$_id}-{$k}"] = array(
+                      'name'  => $product->getName(),
+                      'price' => $price,
+                      'stock' => round($qty),
+                      'sku'   => $v->getSku(),
+                      'custom_option' => "{$vtitle} ({$optionType})",
+                      'option_type_id' => $k,
+                      'product_id' => $_id,
+                      );
+                }
               }
             }
         }
