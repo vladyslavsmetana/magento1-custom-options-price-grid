@@ -11,6 +11,7 @@ class Xpscommerce_CustomoptionsPricegrid_Block_Adminhtml_Products
         $search = $this->getRequest()->getParam('search');
         $searchSKU = $this->getRequest()->getParam('search_sku');
 
+
             $products = Mage::getModel('catalog/product')->getCollection()
                 ->addAttributeToSelect('*')
                 ->setPageSize(20)
