@@ -31,6 +31,7 @@
                                                                         value="<?php echo $id ?>"/></td>
                         <td class="price"><?php echo $p['custom_option'] ?></td>
                         <td class="stock" style="width:40px;">
+                            <span style="display: none"><?php echo $p['price'] ?></span>  //FIX
                             <input type="text" value="<?php echo number_format($p['price'], 2, '.', '')  ?>" class="input-text no-changes" name="products[<?php echo $id ?>][price]"/>
                             <input type="hidden" name="products[<?php echo $id ?>][product_id]" value="<?php echo $p['product_id'] ?>"/>
                             <input type="hidden" name="products[<?php echo $id ?>][option_type_id]" value="<?php echo $p['option_type_id'] ?>"/>
